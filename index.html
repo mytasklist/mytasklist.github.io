@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="manifest" href="manifest.json"/>
+    <link rel="stylesheet" href="style.css">
+    <title>My Task List</title>
+  </head>
+  <body>
+    <!-- Side Navigation -->
+    <div id="side-nav" class="sidenav">
+      <!--&#127968; home icon &times;-->
+      <a class="closebtn"><span onclick="closeNav()">&#9776; </span></a>
+      <a><span onclick="closeNav()"></span></a>
+      <a href="https://killercodes.github.io/js/docs/js-arrow-function" target="fpage">Menu Item 1</a>
+      <a href="#">Menu Item 2</a>
+      <a href="#">Menu Item 3</a>
+      <a href="#">About</a>
+
+  </div>
+
+  <!-- Top navigation -->
+  <div class="topnav">
+
+      <!-- Centered link -->
+      <div class="topnav-centered">
+          <a href="#home">Task Manager &#9889</a>
+      </div>
+
+      <!-- Left-aligned links (default) -->
+      <a><span onclick="openNav()">&#9776;</span> </a>
+
+
+      <!-- Right-aligned links -->
+      <div class="topnav-right">
+
+      </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main" class="main" style="padding:10px">
+
+      <!--iframe name="fpage"></iframe-->
+      Add a task
+      <table id="list">
+          <colgroup>
+              <col span="1" style="width: 80%;">
+              <!--col span="1" style="width: 5%;"-->
+              <col span="1" style="width: 20%;">
+          </colgroup>
+          <!--tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+          </tr-->
+          <tr class="tr1">
+              <td>
+                  <input id="task-text" type="text" class="t1" placeholder="task">
+              </td>
+              <!--td>
+                  <input type="time" id="task-time" class="t2" name="appt">
+              </td-->
+              <td>
+                  <input id="task-button" class="b1" type="button" value="Add" onclick="addtask()">
+              </td>
+          </tr>
+          <!--
+          <tr>
+              <td>New CELL 1</td><td>1:23</td><td><input type='button' class='joker' value='done'></td>
+          </tr>
+          <tr>
+              <td>New CELL 1</td><td><input type='button' class='joker' value='done'></td>
+          </tr>-->
+
+      </table>
+
+
+  </div>
+
+  <script>
+      function addtask() {
+          debugger;
+          var taskText = document.getElementById('task-text');
+          //var taskTime = document.getElementById('task-time');
+          var table = document.getElementById('list');
+
+          if (taskText.value.length == 0 || taskText.value.length > 1024) {
+
+              alert('plz add some task < 255 chars');
+              taskText.value = null;
+              return;
+          }
+          else {
+              addTodo(taskText.value);
+          }
+      }
+
+      function joke(btn) {
+          var j1 = btn;
+          debugger;
+          var row = btn.parentNode.parentNode;
+          row.parentNode.removeChild(row);
+      }
+
+
+
+      function openNav() {
+          document.getElementById("side-nav").style.width = "250px";
+          //document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+          document.getElementById("side-nav").style.width = "0";
+          //document.getElementById("main").style.marginLeft = "0";
+      }
+
+      function SetTimer(btn) {
+          debugger;
+          var tmr = document.getElementById("appt").value;
+          var tmr_hr = parseInt(tmr.split(":")[0]);
+          var tmr_min = parseInt(tmr.split(":")[1]);
+
+          if (tmr_hr == NaN) {
+              return;
+          }
+
+          var dt = new Date();
+          dt.setHours(tmr_hr);
+          dt.setMinutes(tmr_min);
+
+          var countDownDate = dt.getTime();
+
+          // Update the count down every 1 second
+          var x = setInterval(function () {
+
+              // Get today's date and time
+              var now = new Date().getTime();
+
+              // Find the distance between now and the count down date
+              var distance = countDownDate - now;
+
+              // Time calculations for days, hours, minutes and seconds
+              var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+              var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+              var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+              var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+              var milsec = Math.floor((distance % (1000 * 60)));
+              // Output the result in an element with id="demo"
+              var timerTick = days + "d:" + hours + "h:"
+                  + minutes + "m:" + seconds + "s:" + milsec;
+
+              btn.value = timerTick;
+
+              // If the count down is over, write some text 
+              if (distance < 0) {
+                  clearInterval(x);
+                  btn.value = "EXPIRED";
+                  btn.style.color = "#f00";
+              }
+          }, 10);
+
+      }
+
+      //---- save
+      const existingTodos = JSON.parse(localStorage.getItem('tskMgr')) || [];
+
+      const todoData = [];
+
+      existingTodos.forEach(todo => {
+          addTodo(todo);
+      });
+
+      function addTodo(todoText) {
+          todoData.push(todoText);
+
+          localStorage.setItem('tskMgr', JSON.stringify(todoData));
+
+
+          var table = document.getElementById('list');
+          var rowId = table.rows.length;
+
+          var row = table.insertRow(1);
+
+          var cell1 = row.insertCell(0);
+          cell1.setAttribute('colspan', 2);
+          cell1.innerHTML = `<div id="${rowId}" class="entry">${todoText} 
+              <br/>
+              <span class="dtnow">${new Date()}</span>
+              &nbsp;<input type="time" id="appt" class="ttimer" name="appt">                
+              &nbsp;<input type='button' onclick= "joke(this)" class='joker' value='&#9989;'>
+              </div> `;
+
+          var taskText = document.getElementById('task-text');
+          taskText.value = ''
+      }
+
+
+  </script>
+    <script src="app.js"></script>
+  </body>
+</html>
