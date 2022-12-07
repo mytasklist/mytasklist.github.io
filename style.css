@@ -1,16 +1,16 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    
+
 }
 
-body{
+body {
     background: linear-gradient(to top left, #000066 0%, #660066 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
-.font20{
+.font20 {
     font-size: 26px;
 }
 
@@ -25,7 +25,7 @@ body{
     background-color: rgba(17, 17, 17, 0.95);
     overflow-x: hidden;
     transition: 0.25s;
-    padding-top: 10px;
+    padding-top: 1px;
     font-weight: bold;
 }
 
@@ -39,7 +39,7 @@ a[type=icon] {
     font-size: 15px;
     color: #818181;
     display: block;
-    transition: 0.3s;
+    transition: 0.53s;
 }
 
 .sidenav a:hover {
@@ -47,9 +47,10 @@ a[type=icon] {
 }
 
 .sidenav .closebtn {
-    
+    font-size: 30px;
     margin-left: 0px;
     cursor: pointer;
+    margin-top: 0px;
 }
 
 
@@ -65,10 +66,10 @@ a[type=icon] {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 5px; 
+    padding: 5px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 
@@ -93,21 +94,19 @@ a[type=icon] {
 }
 
 /* Responsive navigation menu (for mobile devices) */
-
-
 @media screen and (max-width: 800px) {
     .sidenav {
-        padding-top: 20px;
+        padding-top: 0px;
     }
 
     .sidenav a {
         font-size: 18px;
-        
+
         font-weight: normal;
     }
 
     .sidenav a:hover {
-       
+
         color: aqua;
         background: #000;
         font-weight: bold;
@@ -129,34 +128,35 @@ iframe {
     overflow: hidden;
 }
 
-.inline{
+.inline {
     display: inline;
 }
 
-.block{
+.block {
     display: block;
 }
 
-.tr1{
-   
+.tr1 {
+
     border: 12px solid #000;
 }
 
-.t1{
+.t1 {
     width: 95%;
     height: 20px;
-    padding:10px;
+    padding: 10px;
     margin: 1px;
     margin-right: 0px;
     font-size: 25px;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
-    
+    background-color: rgba(255, 255, 255, 0.771);
+    color: white;
     border-radius: 5px;
 }
 
-.t2{
+.t2 {
     /**/
     width: 100%;
     font-size: 10px;
@@ -164,21 +164,22 @@ iframe {
     border-top: 10px;
     border-left: 10px;
     border-right: 10px;
-    
+
 }
 
-.b1{
+.b1 {
     width: 100%;
-    height: 43px;;
+    height: 43px;
+    ;
     font-size: 20px;
     border-radius: 5px;
     border: 10px;
     font-size: 12;
-    background: #0ca518fa;
+    background: #0ca519b1;
     color: #fff;
 }
 
-.b1:hover{
+.b1:hover {
     background: #00cb11;
     color: rgb(255, 255, 255);
 }
@@ -186,7 +187,7 @@ iframe {
 .apptext {
     width: 99%;
     height: 20px;
-    padding:5px;
+    padding: 5px;
     margin: 1px;
     margin-right: 10px;
     font-size: 25px;
@@ -195,12 +196,12 @@ iframe {
     border-right: 0px;
 }
 
-.apptext:hover{
+.apptext:hover {
     outline-width: 0;
 }
 
 
-.appbutton{
+.appbutton {
     width: 94%;
     height: 40px;
     padding: 0px;
@@ -211,53 +212,68 @@ iframe {
     border-radius: 5px;
 }
 
-.appbutton:hover{
+.appbutton:hover {
     background-color: #333;
-    color:#fff;
+    color: #fff;
 }
 
 
 
-table{
+table {
     width: 100%;
 }
 
-td{
+td {
     padding: 0px;
-    margin: 0px;;
-    border: 10px solid rgba(0,0,0,0.11);
+    margin: 0px;
+    
+    border: 10px solid rgba(255, 255, 255, 0);
     border-radius: 10px;
 }
 
-.hide{
-    display:none;
-    visibility:collapse;
+.hide {
+    display: none;
+    visibility: collapse;
 }
 
 
 /* --- kjkjnjk p--*/
-.entry{
+.entry {
     color: #fff;
-    border:10px solid transparent;
+    border: 10px solid transparent;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.281);
+    background: rgba(255, 255, 255, 0.137);
+    border-radius: 5px;
+    
 }
 
-.joker{
+.joker1 {
     border-radius: 5px;
-    border: 0px;
-    font-size: 12;
+    border: 0px solid greenyellow;
+    font-size: 30;
     padding: 3px;
     background: rgba(255, 255, 255, 0.00281);
     color: #fff;
 }
 
-.joker:hover{
-    background-color: #0f0;
+.joker{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+}
+
+.joker:hover {
+    background-color: rgb(255, 0, 30);
     color: #fff;
 }
 
-.ttimer{
+.ttimer {
     background: rgba(255, 255, 255, 0.0181);
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -267,8 +283,16 @@ td{
     border-radius: 5px;
 }
 
-.dtnow{
-    color: rgb(0, 0, 0);
-    font-size: 12px;
+.dtnow {
+    color: rgb(235, 235, 235);
+    font-size: 10px;
     font-weight: bold;
+    background-color: #00000061; /* Green */
+    border: 5px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+}
+
+.entry:hover{
+    background-color: #fff;
+    color: #000;
 }

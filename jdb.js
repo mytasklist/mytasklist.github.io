@@ -39,8 +39,7 @@ function Load() {
 
 
 
-function Rem(btn)
-{
+function Rem(btn) {
     var j1 = btn;
     debugger;
     var row = btn.parentNode.parentNode;
@@ -50,23 +49,21 @@ function Rem(btn)
     Sync(newList);
 }
 
-function Sync(mylist)
-{
-    if(mylist == null)
-    {
+function Sync(mylist) {
+    if (mylist == null) {
         localStorage.setItem('tskMgr', JSON.stringify(TaskList));
     }
-    else{
+    else {
         localStorage.setItem('tskMgr', JSON.stringify(mylist));
     }
     //TaskList = [];
     //Load();
 }
 
-function addToTaskList(todoText,id) {
+function addToTaskList(todoText, id) {
 
     debugger;
-    var tsk = new Task(TaskList.length,todoText);
+    var tsk = new Task(TaskList.length, todoText);
     TaskList.push(tsk);
     localStorage.setItem('tskMgr', JSON.stringify(TaskList));
 
@@ -91,10 +88,14 @@ function addToTaskList(todoText,id) {
     AddToTable(tsk);
 }
 
-function AddToTable(tsk)
-{
+function AddToTable(tsk) {
     var table = document.getElementById('list');
     var rowId = table.rows.length;
+    let myDate = new Date(tsk.taskdate);
+
+// using various methods of Date class to get year, date, month, hours, minutes, and seconds.
+
+    let dateStr = myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
 
     var row = table.insertRow(1);
 
@@ -102,10 +103,9 @@ function AddToTable(tsk)
     cell1.setAttribute('colspan', 2);
     cell1.innerHTML = `<div id="${rowId}" class="entry">${tsk.value} 
         <br/>
-        <span class="dtnow">${tsk.taskdate}</span>
+        <span class="dtnow">CreatedOn ${dateStr}</span>
 
-        <input type="datetime-local" id="appt" class="ttimer" name="appt">            
-        &nbsp;<input type='button' name="${tsk.taskid}" onclick= "Rem(this)" class='joker' value='&#9989;'>
+        &nbsp;<input type='button' name="${tsk.taskid}" onclick= "Rem(this)" class='joker' value='Done &#9989;'>
         </div> `;
 
     var taskText = document.getElementById('task-text');
